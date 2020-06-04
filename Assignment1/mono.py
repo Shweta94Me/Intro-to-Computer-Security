@@ -9,6 +9,7 @@ def printMapping(pos):
     print("Plaintext-Ciphertext")
     for i in range(len(pos)):
         print(chr(i+97)+'-'+chr(pos[i]),end=",")
+    print('\n')
 
 def generateCipherText(s):
     encryptedText = ""
