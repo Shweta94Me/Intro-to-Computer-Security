@@ -5,7 +5,7 @@ import random
 
 position = [*range(97, 123, 1)]
 
-def printMapping(pos):
+def printPlainCipherMapping(pos):
     print("Plaintext-Ciphertext")
     for i in range(len(pos)):
         print(chr(i+97)+'-'+chr(pos[i]),end=",")
@@ -44,12 +44,14 @@ def monoalphabeticCipher():
     if(content):
             res = re.sub("[a-z]", '', content)
             if(len(res) != 0):
-                print("File contains characters other than a-z.")
+                print("File contains characters other than a-z (lowercase).")
                 sys.exit()
             elif(sys.argv[3] == '1'):
+                printPlainCipherMapping(position)
                 encryptedText = generateCipherText(content)
                 fp2.write(encryptedText)    
             elif(sys.argv[3] == '0'):
+                printPlainCipherMapping(position)
                 decryptedText = generatePlainText(content)
                 fp2.write(decryptedText)
             fp2.close()
@@ -57,5 +59,4 @@ def monoalphabeticCipher():
 if __name__ == '__main__':
     random.seed(5)
     random.shuffle(position)
-    printMapping(position)
     monoalphabeticCipher()
