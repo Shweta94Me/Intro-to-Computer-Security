@@ -36,25 +36,28 @@ def monoalphabeticCipher():
         sys.exit()
 
     fp1 = open(inputFile)
-    content = fp1.read()
+    content = (fp1.read()).rstrip('\n')
+    #content = fp1.read()
     fp1.close()
 
     fp2 = open(outputFile, 'w')
-
+   
     if(content):
-            res = re.sub("[a-z]", '', content)
-            if(len(res) != 0):
-                print("File contains characters other than a-z (lowercase).")
-                sys.exit()
-            elif(sys.argv[3] == '1'):
-                printPlainCipherMapping(position)
-                encryptedText = generateCipherText(content)
-                fp2.write(encryptedText)    
-            elif(sys.argv[3] == '0'):
-                printPlainCipherMapping(position)
-                decryptedText = generatePlainText(content)
-                fp2.write(decryptedText)
-            fp2.close()
+        res = re.sub('[a-z]','',content)
+        if(len(res) != 0):
+             print("File contains characters other than a-z (lowercase).")
+             sys.exit()
+        elif(sys.argv[3] == '1'):
+             printPlainCipherMapping(position)
+             encryptedText = generateCipherText(content)
+             fp2.write(encryptedText)    
+        elif(sys.argv[3] == '0'):
+             printPlainCipherMapping(position)
+             decryptedText = generatePlainText(content)
+             fp2.write(decryptedText)
+    else:
+        print("File does not contain any characters")
+    fp2.close()
 
 if __name__ == '__main__':
     random.seed(5)
