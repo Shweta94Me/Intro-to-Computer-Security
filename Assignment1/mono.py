@@ -62,7 +62,8 @@ def monoalphabeticCipher():
             print("File does not contain any characters")
         fp2.close()
     else:
-        print("Please check the input. For plaintext to ciphertext : python3 program_name.py in out 1. For ciphertext to plaintext : python3 program_name.py out in1 0.")    
+        print("Please check the input. For plaintext to ciphertext : python3 program_name.py in out 1. For ciphertext to plaintext : python3 program_name.py out in1 0.")  
+    print('\n')  
     
 
 if __name__ == '__main__':
