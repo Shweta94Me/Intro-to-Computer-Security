@@ -48,7 +48,7 @@ class sslServ:
                                      server_side=True, 
                                      certfile='smestry1.pem',
                                      keyfile='privkey.pem',
-                                     ssl_version=ssl.PROTOCOL_TLSv1
+                                     ssl_version=ssl.PROTOCOL_TLSv1_2
                                      )
         except socket.error as err:
             print('SSL wrap failed ' + str(err))
