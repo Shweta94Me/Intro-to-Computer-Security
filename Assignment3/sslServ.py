@@ -24,7 +24,7 @@ class sslServ:
             print('Socket binding failed with ' + str(err))
             sys.exit()
         try:
-            self.s.listen(1)
+            self.s.listen(5)
             print('Socket is listing')
         except socket.error as err:
             print('Socket listening failed with ' + str(err))
@@ -39,6 +39,9 @@ class sslServ:
                     word = line.split()
                     data[word[0]] = word[1]
                 fp.close()
+        else:
+            print('password file does not exist')
+            sys.exit()
         return data
 
     def getRequest(self):
@@ -72,6 +75,9 @@ if __name__ == '__main__':
         print('Invalid input. Please enter python program_name.py')
         sys.exit()
     else:
+        if not os.path.isfile('password'):
+            print('password file does not exist')
+            sys.exit()
         host = socket.gethostname()
         port = 3000
         serv = sslServ(host,port)
