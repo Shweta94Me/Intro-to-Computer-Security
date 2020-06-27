@@ -25,26 +25,21 @@ if __name__ == '__main__':
         userID = (str(input())).strip()
         print('\nPlease enter Password:\n')
         password = (str(input())).strip()
-        if bool(data):
-            #data dict is not empty
-            if userID in data:
-                ep = data[userID]
-                if os.path.isfile('key.key'):
-                    with open('key.key', 'rb') as fp:
-                        key = fp.read()
-                        fp.close()
-                else:
-                    print('Key file does not exist')
-                    sys.exit()
-                cipher = Fernet(key)
-                dp = cipher.decrypt(ep.encode('utf-8'))
-                if str(dp.decode('utf-8')) == str(password):
-                    print('The password is correct.')
-                #decrypt ep and then compare with entered password
-                else:
-                    print('The password is incorrect.')
+        if userID in data:
+            ep = data[userID]
+            if os.path.isfile('key.key'):
+                with open('key.key', 'rb') as fp:
+                    key = fp.read()
+                    fp.close()
             else:
-                print('ID does not exist.')
+                print('Key file does not exist')
+                sys.exit()
+            cipher = Fernet(key)
+            dp = cipher.decrypt(ep.encode('utf-8'))
+            if str(dp.decode('utf-8')) == str(password):
+                print('The password is correct.')
+                #decrypt ep and then compare with entered password
+            else:
+                print('The password is incorrect.')
         else:
-            print('Password file is empty.')
-            sys.exit()
+            print('ID does not exist.')
