@@ -12,6 +12,7 @@ def readPassFile():
             fp.close()
     else:
         print('password file does not exist')
+        sys.exit()
     return data
 
 if __name__ == '__main__':
@@ -19,11 +20,11 @@ if __name__ == '__main__':
         print('Invalid input. Please enter python program_name.py')
         sys.exit()
     else:
+        data = readPassFile()
         print('\nPlease enter User ID:\n')
         userID = (str(input())).strip()
         print('\nPlease enter Password:\n')
         password = (str(input())).strip()
-        data = readPassFile()
         if bool(data):
             #data dict is not empty
             if userID in data:
@@ -44,3 +45,6 @@ if __name__ == '__main__':
                     print('The password is incorrect.')
             else:
                 print('ID does not exist.')
+        else:
+            print('Password file is empty.')
+            sys.exit()
